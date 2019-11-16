@@ -42,7 +42,7 @@ case class TelegramManager() extends TelegramSerializer with Actor with ElasticS
     val msg : TelegramMessage = TelegramMessage(chat_id, text)
 
     val httpRequest = Marshal(msg).to[RequestEntity].flatMap { entity =>
-      val request = HttpRequest(HttpMethods.POST, s"https://api.telegram.org/bot974949145:AAHA5dK5t7mfdwFQaiqutQugeZA7zJaceyY/sendMessage", Nil, entity)
+      val request = HttpRequest(HttpMethods.POST, s"https://api.telegram.org/bot<token>/sendMessage", Nil, entity)
       log.info("Request: {}", request)
       Http().singleRequest(request)
     }
